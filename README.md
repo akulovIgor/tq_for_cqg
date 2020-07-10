@@ -3,13 +3,17 @@ Gets a list of pairs from a config file (sample config file 1 is provided below)
 Sample config file 1
 
 a=z
+
 b=y
+
 c=x
 
 Sample text file 1
 
 djf#aemfaofna%
+
 b#sjf_ansvo!
+
 cnhjrfyjvth3nxr
 
 The script is written in Python 3.8.3.
