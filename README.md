@@ -21,3 +21,9 @@ The script is written in Python 3.8.3.
 Script run example:
 
 python main.py ./data/config.txt ./data/text.txt
+
+
+To run the tests, use the command:
+
+
+python -m unittest tests/test_replacement.py  

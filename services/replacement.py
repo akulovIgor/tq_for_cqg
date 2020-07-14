@@ -11,19 +11,37 @@ def get_args():
 
 def get_configuration(config_path : str):
     '''Parses a configuration file and makes a dictionary of the form: {'replaced' : 'replacing'} '''
-    with open(abspath(config_path)) as f:
-        config_lines=f.readlines()
+    try:
+        with open(abspath(config_path)) as f:
+            config_lines=f.readlines()
+    except FileNotFoundError:
+        print('File of configuration not found. Please, check path or name file.')
+        exit()
+    except UnicodeDecodeError:
+        print('Please check extension of the configuration file. Only .txt files can be specified')
+        exit()
     list_of_replaced = []
     list_of_replacing = []
     for i in config_lines:
         list_of_replaced.append(i[0])
-        list_of_replacing.append(i[2])
+        try:
+            list_of_replacing.append(i[2])
+        except IndexError:
+            print('Please check the contents of the configuration file. The lines in the file should have the form a = b.')
+            exit()
     return dict(zip(list_of_replaced, list_of_replacing))
 
 def get_text(text_file_path : str):
     '''Gets the text to be processed.'''
-    with open(abspath(text_file_path)) as f:
-        text_lines = f.readlines()
+    try:
+        with open(abspath(text_file_path)) as f:
+            text_lines = f.readlines()
+    except FileNotFoundError as e:
+        print('File with text for processed not found. Please, check path or name file.')
+        exit()
+    except UnicodeDecodeError:
+        print('Please check extension of the file with text for processed. Only .txt files can be specified.')
+        exit()
     return text_lines
 
 def processes_text(text_lines : list, list_of_replaced : list, list_of_replacing : list):
